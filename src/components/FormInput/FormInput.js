@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addContact } from '../../redux/action';
 
-export default function FormInput({onSubmit}) {
+
+const FormInput = ({onSubmit}) =>{
   
   const [name,setName] = useState('');
   const [phone,setPhone] = useState('');
@@ -26,7 +29,7 @@ export default function FormInput({onSubmit}) {
   
   return (
     <form onSubmit={hendleSave}>
-         <lebel>
+         <label>
            Name
            <input
             type="text"
@@ -37,9 +40,9 @@ export default function FormInput({onSubmit}) {
             value={name}
             onChange={hendleNameChange}
           />
-        </lebel>
+        </label>
         <br />
-        <lebel>
+        <label>
           Phone
           <input
             type="tel"
@@ -50,9 +53,15 @@ export default function FormInput({onSubmit}) {
             value={phone}
             onChange={hendlePhoneChange}
           />
-        </lebel>
+        </label>
         <br />
         <button type="submit">Save</button>
       </form>
   )
 }
+
+const mapDispatchToProps = dispatch => ({
+  onSubmit:(nickName,phone)=>dispatch(addContact(nickName,phone))
+})
+
+export default connect(null,mapDispatchToProps)(FormInput);
