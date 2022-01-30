@@ -24,8 +24,6 @@ const filter = (state = '', { type, payload }) => {
     }
 };
   
-
-
 export default combineReducers({
     items:items,
     filter:filter,
